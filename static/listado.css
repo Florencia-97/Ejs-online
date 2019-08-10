@@ -1,0 +1,33 @@
+
+.listado{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.listado h2{
+    color: #fbfbfb;
+    font-size: 28px;
+    margin-top: 10vh;
+}
+
+.listado ul{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 70%;
+}
+
+.listado li{
+    margin-top: 3vh;
+}
+
+.listado a{
+    color: #fbfbfb;
+    display: block;
+    padding: 10px;
+    background: #FC9193;
+    text-transform: uppercase;
+    font-size: 14px;
+}

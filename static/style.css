@@ -363,3 +363,19 @@ span.zen , .not-found a{
 .encabezado, .agregarEj form {
      color: white;
 }
+
+/* Mobil Friendly */
+
+@media screen and (max-width: 700px){
+    body{
+        margin: 0px;
+        padding: 0px;
+    }
+    .enunciados{
+        width: 10px;
+    }
+    .board_area{
+        width: 100%;
+    }
+
+}

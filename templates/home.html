@@ -9,22 +9,24 @@
             <button onclick="mostrarEnunciado(true)" id="bt-enunciado">Enunciado</button>
             <button onclick="mostrarEnunciado(false)" id="bt-consola">Consola</button>
         </div>
-        <div class="test-result" id="consola-result" style="display:{{consola_display}};">
+        <div class="problema">
+            <div class="test-result" id="consola-result" style="display:{{consola_display}};">
                 <p>{{result | safe}}</p>
-        </div>
-        {% if consola_display == 'none'%}
-        <div class="enunciado" id="ver-enunciado">
-        {% else %}
-        <div class="enunciado" id="ver-enunciado" style="display:none;">
-        {% endif %}
+            </div>
+            {% if consola_display == 'none'%}
+            <div class="enunciado" id="ver-enunciado">
+            {% else %}
+            <div class="enunciado" id="ver-enunciado" style="display:none;">
+            {% endif %}
             <div class="content">
-                <h2>{{ tema[0] | upper}}{{tema[1:] | replace("_", " ") }}</h2>
-                <h3>{{ ej  | replace("_", " ") }}</h3>
+                <h2>{{ ej  | replace("_", " ") }}</h2>
+                <h3>{{ tema[0] | upper}}{{tema[1:] | replace("_", " ") }}</h3>
                 {% include 'ejercicios/%s/%s/%s.html' % (seccion, tema, ej) %}
                 <form action="{{ url_for('form.form', seccion = seccion, tema = tema, ej = prox_ej) }}">
                     <input id="siguiente" type="submit" value="Siguiente" />
                 </form>
             </div>
+        </div>
         </div>
     </div>
 

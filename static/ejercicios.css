@@ -1,0 +1,106 @@
+
+.board_area{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: flex-start;
+    height: 90%;
+    margin-top: 10vh;
+}
+
+.board_area {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    margin-top: 9vh;
+    width: 100%;
+    margin-left: 5%;
+    height: 80vh;
+}
+
+.enunciados {
+    display: flex;
+    flex-direction: column;
+    background: #f7d794;
+    width: 45%;
+    height: 100%;
+}
+
+.enunciado, .test-result {
+    overflow-y: scroll;
+    background: grey;
+    font-weight: 400;
+    flex: 1;
+}
+
+.bar_enun_code{
+    display: flex;
+    width: 100%;
+    justify-content: space-evenly;
+}
+
+.bar_enun_code button{
+    border-top: 3px solid #fb4831;
+    border-bottom: none;
+    border-left: none;
+    border-right: none;
+    width: 50%;
+    padding: 7px 3px;
+    background: inherit;
+}
+
+.problema{
+    padding: 15px;
+}
+
+/* Code editor */
+
+.code-editor {
+    width: 45%;
+    min-width: 600px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.code-editor form{
+    height: 100%;
+}
+
+/*  */
+
+/*----- Boton Submit --------*/
+
+input {
+    background: none;
+    padding: 10px 30px;
+    transition: background 0.3s, color 0.3s;
+    border: 1px solid #BBB;
+}
+
+.code-editor input{
+    margin-top: 0.9em;
+}
+
+#submit {
+    color: #FC9193;
+}
+
+#submit:hover {
+    border: 1px solid #BBB;
+    background: #FC9193;
+    padding: 10px 30px;
+    color: #1e272e;
+}
+
+#siguiente {
+    background-color: #FC9193;
+}
+
+#siguiente:hover {
+    background: #303952;
+    color: #ffdd59;
+}
+
+/*  */
