@@ -1,0 +1,57 @@
+/*----------------------GENERAL---------------------*/
+
+* {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    background-color: #303952;
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+}
+
+body {
+    font: 300 1em 'Fira Sans', sans-serif;
+}
+
+main{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    height: inherit;
+    flex-wrap: wrap-reverse;
+}
+
+.info{
+    width: 50%;
+    min-width: 400px;
+}
+
+.titulo{
+    font-size: 3.5em;
+    color: white;
+}
+
+.curso{
+    color: goldenrod;
+}
+
+.btn {
+    background: none;
+    padding: 10px 30px;
+    transition: background 0.3s, color 0.3s;
+    border: 1px solid #BBB;
+    color: white;
+}
+
+.animation{
+    min-width: 400px;
+    width: 30%;
+}
+
+.animation img{
+    width: 100%;
+}
+
