@@ -1,14 +1,25 @@
-{% extends 'layout.html' %}
-
-{% block body %}
-
-<div class="listado">
-    <h2>Ejercicos</h2>
-    <ul>
-        {% for opcion in opciones %}
-            <li><a href="/listado/{{opcion}}">{{ opcion | replace("_", " ")}}</a></li>
-        {% endfor %}
-    </ul>
-</div>
-
-{% endblock %}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Flask app</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://fonts.googleapis.com/css?family=Fira+Sans" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='index.css') }}">
+</head>
+<body>
+    <main>
+        <div class="info">
+            <h1 class="titulo">Algoritmos y Programación I</h1>
+            <h2 class="curso">Curso Dessaya</h2>
+    
+            <button class="btn ejs">Ejercicios</button>
+            <button class="btn about">Sobre Nosotros</button>
+        </div>
+        <div class="animation">
+            <img src="/static/coding.svg">
+        </div>
+    </main>
+</body>
+</html>

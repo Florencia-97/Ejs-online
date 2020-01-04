@@ -5,7 +5,6 @@ index_blueprint = Blueprint('index', __name__)
 
 @index_blueprint.route("/")
 def index():
-    opciones = os.listdir("templates/ejercicios")
-    return render_template('index.html', opciones = opciones)
+    return render_template('index.html')
 
     
