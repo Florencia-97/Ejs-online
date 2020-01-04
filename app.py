@@ -8,6 +8,7 @@ from about import about_blueprint
 from guia import guia_blueprint
 from listado import listado_blueprint
 from ejercicios import form_blueprint
+from tutorial import tutorial_blueprint
 
 
 app = Flask(__name__)
@@ -18,6 +19,7 @@ app.register_blueprint(about_blueprint)
 app.register_blueprint(guia_blueprint)
 app.register_blueprint(listado_blueprint)
 app.register_blueprint(form_blueprint)
+app.register_blueprint(tutorial_blueprint)
 
 
 # 404 PAGINA NO ENCONTRADA

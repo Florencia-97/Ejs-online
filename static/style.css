@@ -181,6 +181,16 @@ input {
     background: #1e272e;
 }
 
+#bt-enunciado:active, #bt-consola:active,
+#bt-enunciado:focus, #bt-consola:focus,
+#bt-enunciado:focus:active, #bt-consola:focus:active,
+#bt-enunciado.active, #bt-consola.active{
+  background-image: none;
+  outline: none;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+
 /*----------------------INDEX---------------------*/
 
 .index {

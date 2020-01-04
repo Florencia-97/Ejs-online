@@ -24,7 +24,6 @@ def form(seccion, tema, ej):
 
     lista_ejs = ordenar_lista_directorio(os.listdir("templates/ejercicios/{}/{}".format(seccion,tema)))
     prox_ej = getProximoEjercicio(seccion,tema, ej)
-    print(prox_ej)
 
     if request.method == 'POST' and form.validate():
         consola_display = 'visible'
@@ -39,7 +38,6 @@ def form(seccion, tema, ej):
                 return response 
 
             return send_file(filename,  attachment_filename = ej + '.py', as_attachment=True)
-        print(ej)
         result = formatear_salida( str(runCode(form.editor.data, tema, pruebas)))
     return render_template('home.html', 
                             form = form, tema = tema, ej = ej, result = result, ejs_tema = len(lista_ejs),
@@ -77,7 +75,7 @@ def runCode(code, tema, pruebas_ej):
     # Excecute the untrusted code
     proc = subprocess.Popen(command,stdout=PIPE, stderr=PIPE)
     try:
-        outs, errs = proc.communicate(timeout=4)
+        outs, errs = proc.communicate(timeout=10)
         errs = errs.decode('UTF-8')
     except subprocess.TimeoutExpired:
         proc.kill()
@@ -103,12 +101,25 @@ def ordenar_lista_directorio(lista):
     return sorted(lista, key = lambda nombre: nombre[0])
 
 def formatear_salida(salida):
+    salida = chequear_tiempo(salida)
     salida = salida.replace('\n','<br>')
+    salida = re.sub(r'(Traceback \(most recent call last\):)', '', salida)
+    salida = re.sub(r'(\(__main__.[\w]*\))', ' ', salida)
+    salida = re.sub(r'(File ".\/(\w)*.py",)', 'In ', salida)
     salida = re.sub(r'(FAIL: test_[\w\s\(\.\)]*)', '<span id="error">'+ r'\1' + '</span>', salida)
     salida = re.sub(r'(FAIL(ED)?)', '<span id="rojo">' + r'\1' + '</span>', salida)
     salida = re.sub(r'(ok)', '<span id="verde">' + r'\1' + '</span>', salida)
+    salida = re.sub(r'(ERROR)', '<span id="rojo">' + r'\1' + '</span>', salida)
+    salida = re.sub(r'([\w]*Error)', '<span id="funcion">' + r'\1' + '</span>', salida)
     salida = re.sub(r'(OK)', '<span id="verde">' + 'Pasaste todas las pruebas!' + '</span>', salida)
     salida = re.sub(r'(test_\w*)', '<span id="funcion">'+ r'\1' + '</span>', salida)
+    return salida
+
+def chequear_tiempo(salida):
+    if "TimeoutExpires exception" == salida:
+        cad = "Tu función tardó más de lo esperado! Suele deberse esto a un ciclo infinito dentro de esta."
+        cad += " Si tenés un ciclo while o for, el problema suele encontrarse allí!"
+        return cad
     return salida
 
 def getProximoEjercicio(seccion, tema, ej):
@@ -120,7 +131,5 @@ def getProximoEjercicio(seccion, tema, ej):
             list_ejs.append(ejercicio)
             if ejercicio.rstrip('\n') == ej:
                 num_ej = i
-    print(num_ej)
-    print(list_ejs)
     return list_ejs[ (num_ej + 1) % len(list_ejs)].rstrip('\n')
 
