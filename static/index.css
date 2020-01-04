@@ -38,12 +38,23 @@ main{
     color: goldenrod;
 }
 
-.btn {
+.btn{
     background: none;
     padding: 10px 30px;
     transition: background 0.3s, color 0.3s;
     border: 1px solid #BBB;
     color: white;
+}
+
+.ejs {
+    background: none;
+    text-decoration: none;
+    color: #fff;
+    display: block;
+    padding: 15px 0px 15px 15px;
+    transition: background 0.3s, color 0.3s;
+    border: 1px solid #BBB;
+    width: 100%;
 }
 
 .animation{
