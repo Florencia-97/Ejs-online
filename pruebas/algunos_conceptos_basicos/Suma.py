@@ -21,6 +21,12 @@ class PedirNumeroYSumarTestCase(unittest.TestCase):
         with patch('builtins.input', side_effect = user_input):
             numero = sumar_numeros_recibidos()
         self.assertEqual(numero, 7)
+    
+    def test_pasan_repetidamente_valores_no_numericos(self):
+        user_input = ["dos", "nueve", "2", "auto", "mario", "8"]
+        with patch('builtins.input', side_effect = user_input):
+            numero = sumar_numeros_recibidos()
+        self.assertEqual(numero, 10)
 
 
 if __name__ == '__main__':

@@ -14,10 +14,9 @@ class TestStringMethods(unittest.TestCase):
         msg = "El valor absoluto de 5.4 es 5.4"
         self.assertEqual(valor_absoluto(5.4), 5.4, msg)
 
-    def test_valor_absoluto_numero_entero_negativo(self):
+    def test_valor_absoluto_numero_fraccion_negativo(self):
         msg = "El valor absoluto de -12.6 es 12.6"
         self.assertEqual(valor_absoluto(-12.6), 12.6, msg)
-
 
 
 if __name__ == '__main__':

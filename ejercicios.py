@@ -10,7 +10,6 @@ import re
 
 form_blueprint = Blueprint('form', __name__)
 
-
 # CONSOLA PARA EJERCITAR
 @form_blueprint.route('/form', methods = ['POST', 'GET'])
 @form_blueprint.route('/form/<seccion>/<tema>/<string:ej>', methods = ['POST', 'GET'])
