@@ -6,7 +6,7 @@ class TestStringMethods(unittest.TestCase):
         msg = "Un número de un dígito tiene largo 1"
         self.assertEqual(cantidad_digitos(5),1, msg)
 
-    def test_numero_de_un_digito_megativo_tiene_largo_1(self):
+    def test_numero_de_un_digito_negativo_tiene_largo_1(self):
         msg = "Un número negativo de un dígito tiene largo 1"
         self.assertEqual(cantidad_digitos(5),1, msg)
     
