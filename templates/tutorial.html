@@ -2,6 +2,84 @@
 
 {% block body %}
 
-<h1>Tutorial</h1>
+<section class="tutorial">
+    <h1>Tutorial</h1>
+
+    <p class="intro">
+        Nuevo en la página? Dejamos aquí una pequeña ayuda para que puedas entender los
+        errores que vas a encontrar y como resolverlos al testear tus funciones!
+    </p>
+
+    <ul class="listado_menu">
+        <li><a href="#info_basica">Información Basica</a></li>
+        <li><a href="#leer_salida">Leer salida</a></li>
+        <li><a href="#tipo_errores">Tipo de Errores</a></li>
+        <li><a href="#descargas">Descargas</a></li>
+    </ul>
+
+    <h2 id="info_basica">Información Basíca</h2>
+    <p>
+        Al ingresar a cualqueir ejercicio encontrarás a tu izquierda el enunciado de este. 
+        A tu derecha estára el editor donde deberás completar la función dad. No debes cambiar el
+        nombre de esta, ni la cantidad de argumentos que recibe!<br>
+    </p>
+
+    <img class="imagen_ejs" src="/static/consola.png" alt="Consola">
+
+    <p>
+        Al correr tu función se mostrará el resultado de las pruebas corridas sobre esta en la consola,
+        también a tu izquierda.
+    </p>
+
+    <img class="imagen_ejs" src="/static/consola_errores.png" alt="Errores">
+
+    <h2 id="leer_salida">Salida</h2>
+
+    <p>
+        Lo primero que se ve son todas las pruebas que se corrieron. Los nombre suelen ser lo sufiientemente
+        descriptivos para entender lo que prueban cada una.
+    </p>
+
+    <img class="imagen_exp" src="/static/pruebas_corridas.png" alt="Errores">
+
+    <p>
+        En la imagen anterior vemos que dos pruebas pasaron, pero otras no. La explicación de porqué no 
+        pasaron las dos mencionadas, lo encontrarás a continuación.
+    </p>
+
+    <img class="imagen_exp" src="/static/explicacion_errores.png" alt="Errores">
+
+    <p>
+        En el primer caso vemos que se corrió nuestra función con la cadena '(x+y]/2'. 
+        Nos dice que True no es false, lo que ya nos puede dar una idea de lo que sucede. 
+        Tenemos una aclaración más, que nos dice '(x+y]/2' no es una expresión balanceada.
+        Lo que nos queda revisar ahora es que puede estar mal en nuestra función. Ya que sabemos que 
+        pasando esa cadena a nuestra función el resultado que damos es True (osea que es balanceada) 
+        pero no lo és! <br>
+        El siguiente caso no vale la pena explicarlo, ya que es de la misma índole.
+    </p>
+
+    <h2 id="tipo_errores">Tipos de Errores</h2>
+
+    <h3 id="assertion_error">AssertionError</h3>
+    <p>A completar</p>
+
+    <h3 id="value_error">ValueError</h3>
+    <p>A completar</p>
+
+    <h2 id="descargas">Descargas</h2>
+
+    <h3>Pruebas</h3>
+    <p>Si querés imprimir las pruebas del ejercicio que estás realizando, podés hacerlo!
+        Simplemente clikeá el botón 'Pruebas' y correlo desde tu computador siguiendo 
+        los pasos a continuación.
+    </p>
+
+    <h3>Función</h3>
+    <p>
+        Para descargar la función que escribiste, clikeá sobre el botón imprimir y listo!
+    </p>
+
+</section>
 
 {% endblock %}

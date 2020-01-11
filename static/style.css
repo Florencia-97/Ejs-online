@@ -373,3 +373,39 @@ span.zen , .not-found a{
 .encabezado, .agregarEj form {
      color: white;
 }
+
+/*----------------------TUTORIAL---------------------*/
+
+.tutorial{
+    margin-left: 8%;
+    color: white;
+}
+
+.tutorial h1{
+    font-size: 2.5em;
+    color: #ff7f82;
+}
+
+.tutorial h2{
+    font-size: 1.8em;
+    color: #f1c40f;
+}
+
+.tutorail .intro {
+    font-size: 18px;
+    width: 80%;
+}
+
+.tutorial .imagen_ejs {
+    width: 90%;
+}
+
+.tutorial .imagen_exp {
+    width: 60%;
+}
+
+.listado_menu a {
+    text-decoration: none;
+    color: white;
+}
+
