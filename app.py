@@ -3,12 +3,12 @@ from wtforms import Form, TextField, TextAreaField, validators, StringField, Sub
 from wtforms.validators import Required
 
 
-from index import index_blueprint
-from about import about_blueprint
-from guia import guia_blueprint
-from listado import listado_blueprint
-from ejercicios import form_blueprint
-from tutorial import tutorial_blueprint
+from controllers.index import index_blueprint
+from controllers.about import about_blueprint
+from controllers.guia import guia_blueprint
+from controllers.listado import listado_blueprint
+from controllers.ejercicios import form_blueprint
+from controllers.tutorial import tutorial_blueprint
 
 
 app = Flask(__name__)
