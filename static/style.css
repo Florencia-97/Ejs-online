@@ -20,14 +20,18 @@ body {
 
 /*----------------------TERMINAL---------------------*/
 
+.terminal {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
 .board_area {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: space-around;
-    margin-top: 9vh;
     width: 100%;
-    margin-left: 5%;
     height: 80vh;
 }
 
@@ -78,6 +82,34 @@ input {
 
 /*----------------------ENUNCIADO---------------------*/
 
+.ejercicios {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    margin-left: 5%;
+    justify-content: flex-start;
+}
+
+.ejercicios .enunciadoEj {
+    color: #f7f1e3;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-content: center;
+    margin-left: 25px;
+    margin-right: 25px;
+    padding: 5px;
+}
+
+.enunciadoEj h2 {
+    font-size: 26px;
+}
+
+.enunciadoEj h3 {
+    font-size: 18px;
+    color: #fbc531;
+}
+
 .enunciados {
     border: 1px solid #fbc531;
     width: 45%;
@@ -101,16 +133,6 @@ input {
 
 .enunciado{
     background: #dcdde1;
-}
-
-.enunciado .content h2{
-    color: #2c3e50;
-    font-size: 22px;
-    margin-bottom: -12px;
-}
-
-.enunciado .content h3{
-    color: #7f8c8d;
 }
 
 .test-result{
@@ -140,7 +162,7 @@ input {
 
 /* ---- \etiquetas ---- */
 
-.enunciado h2 {
+/* .enunciado h2 {
     font-size: 30px;
     color: #1e272e;
     margin-top: 5px;
@@ -149,11 +171,10 @@ input {
 .enunciado h3 {
     font-size: 20px;
     color: #485460;
-}
+} */
 
 .enunciado p {
     font-weight: 500;
-
 }
 
 .bar_enun_code {

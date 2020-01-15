@@ -2,67 +2,68 @@
 
 {% block body %}
 
-<div class="board_area">
-
-    <div class="enunciados">
-        <div class="bar_enun_code">
-            <button onclick="mostrarEnunciado(true)" id="bt-enunciado">Enunciado</button>
-            <button onclick="mostrarEnunciado(false)" id="bt-consola">Consola</button>
-        </div>
-        <div class="test-result" id="consola-result" style="display:{{consola_display}};">
-                <p>{{result | safe}}</p>
-        </div>
-        {% if consola_display == 'none'%}
-        <div class="enunciado" id="ver-enunciado">
-        {% else %}
-        <div class="enunciado" id="ver-enunciado" style="display:none;">
-        {% endif %}
-            <div class="content">
-                <h2>{{ tema[0] | upper}}{{tema[1:] | replace("_", " ") }}</h2>
-                <h3>{{ ej  | replace("_", " ") }}</h3>
-                {% include 'ejercicios/%s/%s/%s.html' % (seccion, tema, ej) %}
-                <form action="{{ url_for('form.form', seccion = seccion, tema = tema, ej = prox_ej) }}">
-                    <input id="siguiente" type="submit" value="Siguiente" />
-                </form>
-            </div>
-        </div>
+<div class="ejercicios">
+    <div class="enunciadoEj">
+        <h2>{{ ej  | replace("_", " ") }}</h2>
+        <h3>{{ tema[0] | upper}}{{tema[1:] | replace("_", " ") }}</h3>
     </div>
 
-    <div class="code-editor">
-        <form method="POST" action="{{ url_for('form.form', seccion = seccion, tema = tema, ej = ej) }}">
-            <textarea name="editor" id="editor">{{form.editor.data}}</textarea>
-            <script>
-                function betterTab(cm) {
-                    if (cm.somethingSelected()) {
-                        cm.indentSelection("add");
-                    } else {
-                        cm.replaceSelection(cm.getOption("indentWithTabs") ? "\t" :
-                            Array(cm.getOption("indentUnit") + 1).join(" "), "end", "+input");
-                    }
-                }
-
-                var editor = CodeMirror.fromTextArea(document.getElementById('editor'), {
-                    mode: 'python',
-                    theme: 'dracula',
-                    lineNumbers: 'true',
-                    extraKeys: {
-                        Tab: betterTab
-                    }
-                });
-                editor.setSize("100%", "90%");
-                editor.setOption("indentUnit", 4);
-                // editor.setOption("smartIndent", false);
-            </script>
-
-            {{ form.submit }}
-            <input id="submit" name="submit" type="submit" value="Print">
-        </form>
-        <!-- <textarea class='terminal' name="result" id="result" cols="30" rows="10" readonly>
-            {{result}}
-        </textarea> -->
+    <div class="terminal">
+            <div class="board_area">    
+                    <div class="enunciados">
+                        <div class="bar_enun_code">
+                            <button onclick="mostrarEnunciado(true)" id="bt-enunciado">Enunciado</button>
+                            <button onclick="mostrarEnunciado(false)" id="bt-consola">Consola</button>
+                        </div>
+                        <div class="test-result" id="consola-result" style="display:{{consola_display}};">
+                                <p>{{result | safe}}</p>
+                        </div>
+                        {% if consola_display == 'none'%}
+                        <div class="enunciado" id="ver-enunciado">
+                        {% else %}
+                        <div class="enunciado" id="ver-enunciado" style="display:none;">
+                        {% endif %}
+                            <div class="content">
+                                {% include 'ejercicios/%s/%s/%s.html' % (seccion, tema, ej) %}
+                                <form action="{{ url_for('form.form', seccion = seccion, tema = tema, ej = prox_ej) }}">
+                                    <input id="siguiente" type="submit" value="Siguiente" />
+                                </form>
+                            </div>
+                    </div>
+                </div>
+                
+                <div class="code-editor">
+                    <form method="POST" action="{{ url_for('form.form', seccion = seccion, tema = tema, ej = ej) }}">
+                        <textarea name="editor" id="editor">{{form.editor.data}}</textarea>
+                        <script>
+                            function betterTab(cm) {
+                                if (cm.somethingSelected()) {
+                                    cm.indentSelection("add");
+                                } else {
+                                    cm.replaceSelection(cm.getOption("indentWithTabs") ? "\t" :
+                                        Array(cm.getOption("indentUnit") + 1).join(" "), "end", "+input");
+                                }
+                            }
+            
+                            var editor = CodeMirror.fromTextArea(document.getElementById('editor'), {
+                                mode: 'python',
+                                theme: 'dracula',
+                                lineNumbers: 'true',
+                                extraKeys: {
+                                    Tab: betterTab
+                                }
+                            });
+                            editor.setSize("100%", "90%");
+                            editor.setOption("indentUnit", 4);
+                            // editor.setOption("smartIndent", false);
+                        </script>
+                
+                        {{ form.submit }}
+                        <input id="submit" name="submit" type="submit" value="Print">
+                    </form>
+                </div>
     </div>
-
-
+    
 </div>
 
 {% endblock %}
