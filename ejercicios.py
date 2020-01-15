@@ -38,7 +38,7 @@ def form(seccion, tema, ej):
 
             return send_file(filename,  attachment_filename = ej + '.py', as_attachment=True)
         result = formatear_salida( str(runCode(form.editor.data, tema, pruebas)))
-    return render_template('home.html', 
+    return render_template('ejercicios.html', 
                             form = form, tema = tema, ej = ej, result = result, ejs_tema = len(lista_ejs),
                             prox_ej = prox_ej, consola_display = consola_display,
                             seccion = seccion
