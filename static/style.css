@@ -110,6 +110,14 @@ input {
     color: #fbc531;
 }
 
+.enunciadoEj h3:hover {
+    color: #ffe6a0;
+}
+
+.enunciadoEj a {
+    text-decoration: none;
+}
+
 .enunciados {
     border: 1px solid #fbc531;
     width: 45%;

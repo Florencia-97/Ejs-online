@@ -5,7 +5,10 @@
 <div class="ejercicios">
     <div class="enunciadoEj">
         <h2>{{ ejercicio.ej  | replace("_", " ") }}</h2>
-        <h3>{{ ejercicio.tema[0] | upper}}{{ejercicio.tema[1:] | replace("_", " ") }}</h3>
+        <a href=""></a>
+        <a href="{{ url_for('listado.listado', ej = ejercicio.tema, tema= ejercicio.seccion) }}">
+            <h3>{{ ejercicio.tema[0] | upper}}{{ejercicio.tema[1:] | replace("_", " ") }}</h3>
+        </a>
     </div>
 
     <div class="terminal">
