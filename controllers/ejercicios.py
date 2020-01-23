@@ -4,6 +4,7 @@ from wtforms.validators import Required
 
 import subprocess
 from subprocess import PIPE
+from entities.Ejercicio import Ejercicio
 import os, uuid, re, tempfile
 import time
 import re
@@ -16,7 +17,6 @@ form_blueprint = Blueprint('form', __name__)
 def form(seccion, tema, ej):
     form = CodeForm(request.form)
     result = ""
-    consola_display = 'none'
     pruebas = ej
     if not form.editor.data:
         form.editor.data = formato_funcion(tema, pruebas)
@@ -24,8 +24,10 @@ def form(seccion, tema, ej):
     lista_ejs = ordenar_lista_directorio(os.listdir("templates/ejercicios/{}/{}".format(seccion,tema)))
     prox_ej = getProximoEjercicio(seccion,tema, ej)
 
+    ejercicio = Ejercicio(tema, ej, seccion)
+
     if request.method == 'POST' and form.validate():
-        consola_display = 'visible'
+        ejercicio.mostrar_consola()
         if request.form['submit'] == 'Print':
             filename = str(uuid.uuid4().hex) + '.py'
             with open(filename,'w') as file:
@@ -37,12 +39,9 @@ def form(seccion, tema, ej):
                 return response 
 
             return send_file(filename,  attachment_filename = ej + '.py', as_attachment=True)
-        result = formatear_salida( str(runCode(form.editor.data, tema, pruebas)))
-    return render_template('ejercicios.html', 
-                            form = form, tema = tema, ej = ej, result = result, ejs_tema = len(lista_ejs),
-                            prox_ej = prox_ej, consola_display = consola_display,
-                            seccion = seccion
-                            )
+        ejercicio.setear_resultado(str(runCode(form.editor.data, tema, pruebas)))
+    return render_template('ejercicios.html', prox_ej = prox_ej, 
+                            form = form, ejercicio = ejercicio, ejs_tema = len(lista_ejs))
 
 
 class CodeForm(Form):
@@ -98,28 +97,6 @@ def formato_funcion(tema, pruebas_ej):
 
 def ordenar_lista_directorio(lista):
     return sorted(lista, key = lambda nombre: nombre[0])
-
-def formatear_salida(salida):
-    salida = chequear_tiempo(salida)
-    salida = salida.replace('\n','<br>')
-    salida = re.sub(r'(Traceback \(most recent call last\):)', '', salida)
-    salida = re.sub(r'(\(__main__.[\w]*\))', ' ', salida)
-    salida = re.sub(r'(File ".\/(\w)*.py",)', 'In ', salida)
-    salida = re.sub(r'(FAIL: test_[\w\s\(\.\)]*)', '<span id="error">'+ r'\1' + '</span>', salida)
-    salida = re.sub(r'(FAIL(ED)?)', '<span id="rojo">' + r'\1' + '</span>', salida)
-    salida = re.sub(r'(ok)', '<span id="verde">' + r'\1' + '</span>', salida)
-    salida = re.sub(r'(ERROR)', '<span id="rojo">' + r'\1' + '</span>', salida)
-    salida = re.sub(r'([\w]*Error)', '<span id="funcion">' + r'\1' + '</span>', salida)
-    salida = re.sub(r'(OK)', '<span id="verde">' + 'Pasaste todas las pruebas!' + '</span>', salida)
-    salida = re.sub(r'(test_\w*)', '<span id="funcion">'+ r'\1' + '</span>', salida)
-    return salida
-
-def chequear_tiempo(salida):
-    if "TimeoutExpires exception" == salida:
-        cad = "Tu función tardó más de lo esperado! Suele deberse esto a un ciclo infinito dentro de esta."
-        cad += " Si tenés un ciclo while o for, el problema suele encontrarse allí!"
-        return cad
-    return salida
 
 def getProximoEjercicio(seccion, tema, ej):
     #Refactorizar, lo hago rápido

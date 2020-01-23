@@ -4,8 +4,8 @@
 
 <div class="ejercicios">
     <div class="enunciadoEj">
-        <h2>{{ ej  | replace("_", " ") }}</h2>
-        <h3>{{ tema[0] | upper}}{{tema[1:] | replace("_", " ") }}</h3>
+        <h2>{{ ejercicio.ej  | replace("_", " ") }}</h2>
+        <h3>{{ ejercicio.tema[0] | upper}}{{ejercicio.tema[1:] | replace("_", " ") }}</h3>
     </div>
 
     <div class="terminal">
@@ -15,17 +15,17 @@
                             <button onclick="mostrarEnunciado(true)" id="bt-enunciado">Enunciado</button>
                             <button onclick="mostrarEnunciado(false)" id="bt-consola">Consola</button>
                         </div>
-                        <div class="test-result" id="consola-result" style="display:{{consola_display}};">
-                                <p>{{result | safe}}</p>
+                        <div class="test-result" id="consola-result" style="display:{{ejercicio.consola_display}};">
+                                <p>{{ejercicio.result | safe}}</p>
                         </div>
-                        {% if consola_display == 'none'%}
+                        {% if ejercicio.consola_display == 'none'%}
                         <div class="enunciado" id="ver-enunciado">
                         {% else %}
                         <div class="enunciado" id="ver-enunciado" style="display:none;">
                         {% endif %}
                             <div class="content">
-                                {% include 'ejercicios/%s/%s/%s.html' % (seccion, tema, ej) %}
-                                <form action="{{ url_for('form.form', seccion = seccion, tema = tema, ej = prox_ej) }}">
+                                {% include 'ejercicios/%s/%s/%s.html' % (ejercicio.seccion, ejercicio.tema, ejercicio.ej) %}
+                                <form action="{{ url_for('form.form', seccion = ejercicio.seccion, tema = ejercicio.tema, ej = prox_ej) }}">
                                     <input id="siguiente" type="submit" value="Siguiente" />
                                 </form>
                             </div>
@@ -33,7 +33,7 @@
                 </div>
                 
                 <div class="code-editor">
-                    <form method="POST" action="{{ url_for('form.form', seccion = seccion, tema = tema, ej = ej) }}">
+                    <form method="POST" action="{{ url_for('form.form', seccion = ejercicio.seccion, tema = ejercicio.tema, ej = ejercicio.ej) }}">
                         <textarea name="editor" id="editor">{{form.editor.data}}</textarea>
                         <script>
                             function betterTab(cm) {
